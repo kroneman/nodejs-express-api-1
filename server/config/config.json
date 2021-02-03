@@ -1,0 +1,28 @@
+{
+    "development": {
+        "username": "user",
+        "password": "example",
+        "database": "database_development",
+        "host": "127.0.0.1",
+        "dialect": "postgres"
+    },
+    "test": {
+        "username": "user",
+        "password": "example",
+        "database": "database_test",
+        "host": "127.0.0.1",
+        "dialect": "postgres"
+    },
+    "production": {
+        "username": "user",
+        "password": "example",
+        "database": "database_production",
+        "use_env_variable": "DATABASE_URL",
+        "dialect": "postgres",
+        "dialectOptions": {
+            "ssl": {
+                "rejectUnauthorized": false
+            }
+        }
+    }
+}

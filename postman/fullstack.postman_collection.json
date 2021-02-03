@@ -1,0 +1,43 @@
+{
+	"info": {
+		"_postman_id": "5782b2de-b988-4fdf-b522-e6ef12381f81",
+		"name": "fullstack",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "User",
+			"item": [
+				{
+					"name": "Create",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Johnny\",\n    \"lastName\": \"Appleseed\",\n    \"email\": \"johnny.appleseed@test.com\",\n    \"password\": \"an_insecure_test_password\"\n}   ",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_NAME}}/{{API_ROOT}}/users",
+							"host": [
+								"{{HOST_NAME}}"
+							],
+							"path": [
+								"{{API_ROOT}}",
+								"users"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		}
+	],
+	"protocolProfileBehavior": {}
+}

@@ -1,13 +1,16 @@
 require('dotenv').config();
 
 const initModels = require('./models');
-const app = require('./app');
+const createServer = require('./app');
 
 const { SERVER_PORT } = process.env;
+(async function main() {
+    const app = createServer();
 
-initModels().then(() => {
     app.listen(
         SERVER_PORT,
-        () => console.log(`notes-app listening on port ${SERVER_PORT}!`)
+        () => console.log(`
+    listening on port http://localhost:${SERVER_PORT}
+    `)
     )
-});
+})();

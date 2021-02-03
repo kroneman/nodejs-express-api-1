@@ -5,7 +5,8 @@
     "scripts": {
         "start": "node ./server/index.js",
         "dev": "nodemon ./server/index.js",
-        "test": "mocha ./tests"
+        "test": "mocha --recursive \"./tests/**/*.js\"",
+        "db:seed": "cd server && npx sequelize-cli db:seed:all"
     },
     "author": "",
     "license": "ISC",
@@ -13,6 +14,7 @@
         "body-parser": "^1.19.0",
         "chai": "^4.2.0",
         "dotenv": "^8.2.0",
+        "esm": "^3.2.25",
         "express": "^4.17.1",
         "mocha": "^8.2.1",
         "morgan": "^1.10.0",
