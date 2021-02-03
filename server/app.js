@@ -1,11 +1,15 @@
 const express = require('express');
+const logger = require('morgan');
 
-const initRoutes = require('./routes');
+const routes = require('./router');
+const bodyParser = require('body-parser');
 
 async function createServer() {
     const app = express();
 
-    initRoutes(app);
+    app.use('/api', routes);
+    app.use(bodyParser.json());
+    app.use(logger('dev'))
 
     return app;
 }

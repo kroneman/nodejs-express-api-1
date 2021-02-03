@@ -13,7 +13,7 @@ describe('My Application', () => {
 
     it('Should return success 200 on the home route', async() => {
         const server = await createApp();
-        const response = await request(server).get('/');
+        const response = await request(server).get('/api');
 
         expect(response.statusCode).to.equal(200);
     });

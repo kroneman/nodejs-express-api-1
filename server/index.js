@@ -10,4 +10,4 @@ initModels().then(() => {
         SERVER_PORT,
         () => console.log(`notes-app listening on port ${SERVER_PORT}!`)
     )
-})
+});
