@@ -3,6 +3,11 @@ const router = Router();
 const controllers = require('./controllers');
 
 router.get('/', (req, res) => res.send('This is root!'))
-router.post('/users', controllers.createUser)
+
+router.post('/users', controllers.createUser);
+router.get('/users', controllers.getAllUsers);
+router.get('/users/:id', controllers.getUserById);
+router.put('/users/:id', controllers.updateUser)
+router.delete('/users/:id', controllers.deleteUser)
 
 module.exports = router;

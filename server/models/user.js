@@ -1,13 +1,14 @@
-module.exports = (sequelize, DataTypes) => {
+module.exports = (sequelize, { STRING }) => {
     const User = sequelize.define('User', {
-        firstName: DataTypes.STRING,
-        lastName: DataTypes.STRING,
-        email: DataTypes.STRING,
-        password: DataTypes.STRING
+        firstName: STRING,
+        lastName: STRING,
+        email: STRING,
+        password: STRING
     }, {});
-    User.associate = function(models) {
+
+    User.associate = ({ Project }) => {
         // associations can be defined here
-        User.hasMany(models.Item, {
+        User.hasMany(Project, {
             foreignKey: 'userId'
         })
     };

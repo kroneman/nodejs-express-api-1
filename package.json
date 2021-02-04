@@ -6,6 +6,7 @@
         "start": "node ./server/index.js",
         "dev": "nodemon ./server/index.js",
         "test": "mocha --recursive \"./tests/**/*.js\"",
+        "db:reset": "cd server && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
         "db:seed": "cd server && npx sequelize-cli db:seed:all"
     },
     "author": "",

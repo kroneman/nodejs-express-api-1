@@ -9,7 +9,7 @@ function createServer() {
 
     app.use(bodyParser.json());
     app.use('/api', routes);
-    app.use(logger('dev'))
+    app.use(logger('dev'));
 
     return app;
 }

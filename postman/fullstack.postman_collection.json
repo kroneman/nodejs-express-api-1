@@ -6,16 +6,40 @@
 	},
 	"item": [
 		{
-			"name": "User",
+			"name": "Users",
 			"item": [
 				{
 					"name": "Create",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "c6b4d630-c8b8-481a-aa52-ee5f33354dd3",
+								"exec": [
+									"const { test, expect, response } = pm;",
+									"",
+									"test(\"Status code is 201\", () => {",
+									"  response.to.have.status(201);",
+									"});",
+									"",
+									"test(\"Person is Johnny\", () => {",
+									"  const responseJson = pm.response.json();",
+									"  const { user } = responseJson;",
+									"  expect(user.firstName).to.eql(\"Johnny\");",
+									"  expect(user.lastName).to.eql(\"Appleseed\");",
+									"  pm.collectionVariables.set(\"user_id\", user.id);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "POST",
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\n    \"firstName\": \"Johnny\",\n    \"lastName\": \"Appleseed\",\n    \"email\": \"johnny.appleseed@test.com\",\n    \"password\": \"an_insecure_test_password\"\n}   ",
+							"raw": "{\n    \"firstName\": \"Johnny\",\n    \"lastName\": \"Appleseed\",\n    \"email\": \"johnny.appleseed@test.com\",\n    \"password\": \"an_insecure_test_password\"\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -34,9 +58,81 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Get All",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{HOST_NAME}}/{{API_ROOT}}/users",
+							"host": [
+								"{{HOST_NAME}}"
+							],
+							"path": [
+								"{{API_ROOT}}",
+								"users"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get By ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "b0db6fba-3e0a-42d8-981c-953c4d42e776",
+								"exec": [
+									"const { test, expect, response } = pm;",
+									"",
+									"test(\"Status code is 200\", () => {",
+									"  response.to.have.status(200);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"protocolProfileBehavior": {
+						"disableBodyPruning": true
+					},
+					"request": {
+						"method": "GET",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_NAME}}/{{API_ROOT}}/users/{{user_id}}",
+							"host": [
+								"{{HOST_NAME}}"
+							],
+							"path": [
+								"{{API_ROOT}}",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
+		}
+	],
+	"variable": [
+		{
+			"id": "0cc852c5-8ae3-4711-a5eb-359443fd0212",
+			"key": "user_id",
+			"value": 10
 		}
 	],
 	"protocolProfileBehavior": {}
