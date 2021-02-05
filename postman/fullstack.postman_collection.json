@@ -60,7 +60,29 @@
 					"response": []
 				},
 				{
-					"name": "Get All",
+					"name": "ReadAll",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7b447af2-fa8d-4d88-952a-2fbc64beedef",
+								"exec": [
+									"const { test, expect, response } = pm;",
+									"",
+									"test(\"Status code is 200\", () => {",
+									"  response.to.have.status(200);",
+									"});",
+									"",
+									"test(\"Person is Johnny\", () => {",
+									"  const responseJson = pm.response.json();",
+									"  const { users } = responseJson;",
+									"  expect(users.length).to.eql(4)",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
 					"request": {
 						"method": "GET",
 						"header": [],
@@ -78,7 +100,7 @@
 					"response": []
 				},
 				{
-					"name": "Get By ID",
+					"name": "Read",
 					"event": [
 						{
 							"listen": "test",
@@ -123,6 +145,152 @@
 						}
 					},
 					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "7a760eb6-7f69-42c0-a18c-716014568770",
+								"exec": [
+									"const { test, expect, response } = pm;",
+									"",
+									"test(\"Status code is 200\", () => {",
+									"    response.to.have.status(200);",
+									"});",
+									"",
+									"test(\"Firstname is updated\", () => {",
+									"    const responseJson = response.json();",
+									"    const { user } = responseJson;",
+									"    expect(user.firstName).to.eql(\"Updated\");",
+									"})"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PATCH",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Updated\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_NAME}}/{{API_ROOT}}/users/{{user_id}}",
+							"host": [
+								"{{HOST_NAME}}"
+							],
+							"path": [
+								"{{API_ROOT}}",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "ed033474-f408-4640-9ddf-9b4f417a1295",
+								"exec": [
+									"const { test, expect, response } = pm;",
+									"",
+									"test(\"Status code is 200\", () => {",
+									"    response.to.have.status(200);",
+									"});",
+									"",
+									"test(\"Firstname is updated, all omitted values are empty\", () => {",
+									"    const responseJson = response.json();",
+									"    const { user } = responseJson;",
+									"    expect(user.firstName).to.eql(\"Updated Put\");",
+									"    expect(user.lastName).to.eql(null);",
+									"    expect(user.email).to.eql(null);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "PUT",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"firstName\": \"Updated Put\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_NAME}}/{{API_ROOT}}/users/{{user_id}}",
+							"host": [
+								"{{HOST_NAME}}"
+							],
+							"path": [
+								"{{API_ROOT}}",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"id": "059eaeeb-64e9-4ed4-92d0-349da9b63910",
+								"exec": [
+									"const { test, response } = pm;",
+									"",
+									"test(\"Status code is 204\", () => {",
+									"    response.to.have.status(204);",
+									"});"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST_NAME}}/{{API_ROOT}}/users/{{user_id}}",
+							"host": [
+								"{{HOST_NAME}}"
+							],
+							"path": [
+								"{{API_ROOT}}",
+								"users",
+								"{{user_id}}"
+							]
+						}
+					},
+					"response": []
 				}
 			],
 			"protocolProfileBehavior": {}
@@ -130,9 +298,9 @@
 	],
 	"variable": [
 		{
-			"id": "0cc852c5-8ae3-4711-a5eb-359443fd0212",
+			"id": "cff0e921-1f3f-45da-a021-48d885021184",
 			"key": "user_id",
-			"value": 10
+			"value": 4
 		}
 	],
 	"protocolProfileBehavior": {}
