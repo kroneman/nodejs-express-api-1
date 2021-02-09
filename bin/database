@@ -1,0 +1,31 @@
+#!/usr/bin/env bash
+
+DATABASE_URL="${DATABASE_URL:-"postgres://user:example@127.0.0.1:5432/database_development"}"
+export DATABASE_URL
+
+usage() {
+  echo "
+    database reset
+      - resets the database
+
+    database seed
+      - seeds the database
+  "
+}
+
+main() {
+  local arg="${1}"
+  case $arg in
+  "reset"*)
+    cd server && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all
+    ;;
+  "seed"*)
+    cd server && npx sequelize-cli db:seed:all
+    ;;
+  *)
+    usage
+    ;;
+  esac
+}
+
+main "$@"

@@ -7,8 +7,8 @@
         "start:dry": "NODE_ENV=development npm run db:reset && npm start",
         "dev": "nodemon ./server/index.js",
         "test": "NODE_ENV=test npm run db:reset && NODE_ENV=test mocha --recursive \"./tests/**/*.js\"",
-        "db:reset": "cd server && npx sequelize-cli db:drop && npx sequelize-cli db:create && npx sequelize-cli db:migrate && npx sequelize-cli db:seed:all",
-        "db:seed": "cd server && npx sequelize-cli db:seed:all"
+        "db:reset": "./bin/database reset",
+        "db:seed": "./bin/database seed"
     },
     "author": "",
     "license": "ISC",
@@ -23,11 +23,11 @@
         "pg": "^8.5.1",
         "pg-hstore": "^2.3.3",
         "sequelize": "^6.5.0",
-        "sqlite3": "^5.0.1",
-        "supertest": "^6.1.3"
+        "supertest": "^6.1.3",
+        "sequelize-cli": "^6.2.0"
     },
     "devDependencies": {
-        "nodemon": "^2.0.7",
-        "sequelize-cli": "^6.2.0"
+        "nodemon": "^2.0.7"
+        
     }
 }

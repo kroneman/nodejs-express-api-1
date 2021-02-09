@@ -1,12 +1,24 @@
-# Use postgres/example user/password credentials
 version: '3.1'
 
 services:
+  api:
+    build: .
+    ports:
+      - 3000:3000
+    depends_on:
+      - db
+    env_file:
+     - .env.docker
+
   db:
     image: postgres
-    # restart: always
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: example
+    env_file:
+     - .env.docker
     ports:
       - 5432:5432
+
+  newman:
+    build: ./postman/

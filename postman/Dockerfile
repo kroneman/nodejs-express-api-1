@@ -1,6 +1,6 @@
 FROM postman/newman:alpine
 
-WORKDIR /etc/postman
+COPY ./docker.postman_environment.json /etc/newman
+COPY ./fullstack.postman_collection.json /etc/newman
 
-COPY ./DEVELOPMENT.postman_environment.json /etc/postman
-COPY ./fullstack.postman_collection.json /etc/postman
+CMD [ "run", "fullstack.postman_collection.json", "-e", "docker.postman_environment.json" ]
